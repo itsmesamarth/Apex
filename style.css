@@ -1,0 +1,101 @@
+/* ------------------------------
+   Base
+------------------------------ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f4f1eb;
+  color: #111111;
+  font-family: Arial, sans-serif;
+}
+
+
+/* ------------------------------
+   Hero
+------------------------------ */
+
+.hero {
+  min-height: 100svh;
+  padding: 2rem 1.25rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+/* ------------------------------
+   Typography
+------------------------------ */
+
+.hero-label {
+  margin: 0 0 1.5rem;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.hero h1 {
+  max-width: 10ch;
+  margin: 0;
+
+  font-size: clamp(3.5rem, 16vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.hero-description {
+  max-width: 30rem;
+  margin: 2rem 0 0;
+
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.75;
+}
+
+
+/* ------------------------------
+   CTA
+------------------------------ */
+
+.hero-cta {
+  width: fit-content;
+  margin-top: 2rem;
+  padding: 0.9rem 1.25rem;
+
+  color: #f4f1eb;
+  background: #111111;
+
+  text-decoration: none;
+  border-radius: 999px;
+}
+
+
+/* ------------------------------
+   Desktop
+------------------------------ */
+
+@media (min-width: 768px) {
+
+  .hero {
+    padding: 3rem;
+  }
+
+  .hero-description {
+    margin-left: 25%;
+  }
+
+  .hero-cta {
+    margin-left: 25%;
+  }
+
+}
