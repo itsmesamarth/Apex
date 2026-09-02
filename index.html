@@ -1,36 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Apex</title>
+    <title>समर्थ</title>
 
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <main>
-    <section class="hero">
-      <p class="hero-label">SAMARTH</p>
+    <main>
 
-      <h1>
-        I build,<br>
-        understand,<br>
-        and explore.
-      </h1>
+        <!-- ========================================
+             HERO
+        ========================================= -->
+        <section class="hero" aria-label="Introduction">
 
-      <p class="hero-description">
-        Marketing, technology, projects, and ideas.
-      </p>
+            <!-- Menu trigger -->
+            <button
+                class="menu-trigger"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false"
+                aria-controls="site-menu"
+            >
+                <span></span>
+                <span></span>
+            </button>
 
-      <a href="#about" class="hero-cta">
-        Explore
-      </a>
-    </section>
-  </main>
 
-  <script src="script.js"></script>
+            <!-- ========================================
+                 HERO COMPOSITION
+            ========================================= -->
+            <div class="hero-composition">
+
+                <!-- Photograph -->
+                <div class="hero-image">
+                    <img
+                        src="assets/samarth.jpg"
+                        alt="Samarth"
+                    >
+                </div>
+
+
+                <!-- Monumental typography -->
+                <div
+                    class="hero-name"
+                    aria-label="समर्थ"
+                >
+                    समर्थ
+                </div>
+
+            </div>
+
+
+            <!-- ========================================
+                 NAVIGATION
+            ========================================= -->
+            <nav
+                class="site-menu"
+                id="site-menu"
+                aria-label="Main navigation"
+                aria-hidden="true"
+            >
+
+                <div class="menu-inner">
+
+                    <a href="#about" class="menu-link">
+                        About
+                    </a>
+
+                    <a href="#work" class="menu-link">
+                        Work
+                    </a>
+
+                    <a href="#thoughts" class="menu-link">
+                        Thoughts
+                    </a>
+
+                    <a href="#contact" class="menu-link">
+                        Contact
+                    </a>
+
+                </div>
+
+            </nav>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
 </body>
 </html>

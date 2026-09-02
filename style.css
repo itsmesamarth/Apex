@@ -1,101 +1,491 @@
-/* ------------------------------
-   Base
------------------------------- */
+/* ========================================
+   FONT SETUP
+   ======================================== */
+
+@font-face {
+    font-family: "Gajraj One";
+    src: url("fonts/Gajraj_One/GajrajOne-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Cormorant Garamond";
+    src: url("fonts/Cormorant_Garamond/static/CormorantGaramond-Regular.ttf")
+        format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Rajdhani";
+    src: url("fonts/Rajdhani/Rajdhani-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* ========================================
+   DESIGN TOKENS
+   ======================================== */
+
+:root {
+    --black: #080808;
+    --white: #f2f2f0;
+
+    --page-padding: 1rem;
+
+    --name-size: clamp(5.5rem, 25vw, 14rem);
+
+    --transition-fast: 300ms ease;
+    --transition-slow: 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* ========================================
+   RESET
+   ======================================== */
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-  scroll-behavior: smooth;
+    background: var(--black);
+    color: var(--white);
 }
 
 body {
-  margin: 0;
-  background: #f4f1eb;
-  color: #111111;
-  font-family: Arial, sans-serif;
+    min-width: 320px;
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    background: var(--black);
+    color: var(--white);
+
+    font-family: "Cormorant Garamond", serif;
+}
+
+button,
+a {
+    font: inherit;
 }
 
 
-/* ------------------------------
-   Hero
------------------------------- */
+/* ========================================
+   HERO
+   ======================================== */
 
 .hero {
-  min-height: 100svh;
-  padding: 2rem 1.25rem;
+    position: relative;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    width: 100%;
+    min-height: 100svh;
+
+    overflow: hidden;
+
+    background: var(--black);
 }
 
 
-/* ------------------------------
-   Typography
------------------------------- */
+/* ========================================
+   MENU TRIGGER
+   ======================================== */
 
-.hero-label {
-  margin: 0 0 1.5rem;
+.menu-trigger {
+    position: absolute;
 
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
+    top: var(--page-padding);
+    right: var(--page-padding);
+
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    cursor: pointer;
 }
 
-.hero h1 {
-  max-width: 10ch;
-  margin: 0;
+.menu-trigger span {
+    display: block;
 
-  font-size: clamp(3.5rem, 16vw, 9rem);
-  line-height: 0.9;
-  letter-spacing: -0.06em;
-}
+    width: 22px;
+    height: 1px;
 
-.hero-description {
-  max-width: 30rem;
-  margin: 2rem 0 0;
+    margin-left: auto;
 
-  font-size: 1rem;
-  line-height: 1.5;
-  opacity: 0.75;
-}
+    background: var(--white);
 
+    opacity: 0.8;
 
-/* ------------------------------
-   CTA
------------------------------- */
-
-.hero-cta {
-  width: fit-content;
-  margin-top: 2rem;
-  padding: 0.9rem 1.25rem;
-
-  color: #f4f1eb;
-  background: #111111;
-
-  text-decoration: none;
-  border-radius: 999px;
+    transition:
+        transform var(--transition-fast),
+        width var(--transition-fast),
+        opacity var(--transition-fast);
 }
 
 
-/* ------------------------------
-   Desktop
------------------------------- */
+/* Menu hover */
+
+.menu-trigger:hover span:first-child {
+    width: 16px;
+}
+
+.menu-trigger:hover span:last-child {
+    width: 22px;
+}
+
+
+/* Menu open state */
+
+.menu-trigger.is-open span:first-child {
+    width: 22px;
+    transform: translateY(3px) rotate(45deg);
+}
+
+.menu-trigger.is-open span:last-child {
+    width: 22px;
+    transform: translateY(-3px) rotate(-45deg);
+}
+
+
+/* ========================================
+   HERO COMPOSITION
+   ======================================== */
+
+.hero-composition {
+    position: relative;
+
+    width: 100%;
+    height: 100svh;
+
+    isolation: isolate;
+}
+
+
+/* ========================================
+   PHOTOGRAPH
+   ======================================== */
+
+.hero-image {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+.hero-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center center;
+
+    filter: none;
+
+    transform: scale(1.08);
+
+    transition: transform var(--transition-slow);
+}
+
+
+/* ========================================
+   MONUMENTAL NAME
+   ======================================== */
+
+.hero-name {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    z-index: 3;
+
+    width: max-content;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-4deg);
+
+    color: var(--white);
+
+    font-family: "Gajraj One", sans-serif;
+    font-size: var(--name-size);
+    font-weight: 400;
+    line-height: 0.75;
+
+    white-space: nowrap;
+
+    pointer-events: none;
+
+    mix-blend-mode: difference;
+}
+
+
+/* ========================================
+   NAVIGATION PANEL
+   ======================================== */
+
+.site-menu {
+    position: absolute;
+
+    top: calc(var(--page-padding) + 48px);
+    right: var(--page-padding);
+
+    z-index: 90;
+
+    width: min(300px, calc(100vw - 2rem));
+
+    padding: 2rem;
+
+    background: rgba(8, 8, 8, 0.45);
+
+    border: 1px solid rgba(242, 242, 240, 0.12);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform:
+        translateY(-12px)
+        scale(0.98);
+
+    transform-origin: top right;
+
+    transition:
+        opacity var(--transition-fast),
+        visibility var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+
+/* ========================================
+   OPEN NAVIGATION
+   ======================================== */
+
+.site-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* ========================================
+   MENU INNER
+   ======================================== */
+
+.menu-inner {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.25rem;
+}
+
+
+/* ========================================
+   MENU LINKS
+   ======================================== */
+
+.menu-link {
+    display: block;
+
+    padding: 0.65rem 0;
+
+    color: var(--white);
+
+    font-family: "Rajdhani", sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1;
+
+    text-decoration: none;
+
+    opacity: 0.78;
+
+    transition:
+        opacity var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.menu-link:hover {
+    opacity: 1;
+
+    transform: translateX(6px);
+}
+
+
+/* ========================================
+   DESKTOP
+   ======================================== */
 
 @media (min-width: 768px) {
 
-  .hero {
-    padding: 3rem;
-  }
+    :root {
+        --page-padding: 1.5rem;
+        --name-size: clamp(9rem, 19vw, 20rem);
+    }
 
-  .hero-description {
-    margin-left: 25%;
-  }
+    .hero-name {
+        top: 52%;
+        left: 50%;
+    }
 
-  .hero-cta {
-    margin-left: 25%;
-  }
+    .site-menu {
+        width: 320px;
 
+        padding: 2.25rem;
+    }
+}
+
+
+/* ========================================
+   LARGE DESKTOP
+   ======================================== */
+
+@media (min-width: 1200px) {
+
+    :root {
+        --page-padding: 2rem;
+        --name-size: clamp(12rem, 17vw, 22rem);
+    }
+
+    .site-menu {
+        width: 340px;
+    }
+}
+
+
+/* ========================================
+   MOBILE MENU
+   ======================================== */
+
+@media (max-width: 767px) {
+
+    .site-menu {
+        position: fixed;
+
+        inset: 0;
+
+        width: 100%;
+        height: 100svh;
+
+        padding:
+            6rem
+            var(--page-padding)
+            2rem;
+
+        display: flex;
+        align-items: center;
+
+        background: rgba(8, 8, 8, 0.45);
+
+        border: 0;
+
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transform: translateY(-100%);
+
+        transition:
+            transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+            opacity 300ms ease,
+            visibility 300ms ease;
+    }
+
+    .site-menu.is-open {
+        opacity: 1;
+        visibility: visible;
+
+        transform: translateY(0);
+    }
+
+
+    /* Mobile menu layout */
+
+    .menu-inner {
+        width: 100%;
+
+        gap: 0.5rem;
+    }
+
+
+    /* Same Rajdhani font as desktop */
+
+    .menu-link {
+        padding: 0.4rem 0;
+
+        font-family: "Rajdhani", sans-serif;
+        font-size: clamp(2.8rem, 12vw, 5rem);
+        font-weight: 400;
+        letter-spacing: 0.01em;
+        line-height: 0.95;
+
+        opacity: 0.8;
+    }
+
+    .menu-link:hover {
+        transform: none;
+    }
+}
+
+
+/* ========================================
+   MENU OPEN STATE
+   LOCK PAGE SCROLL
+   ======================================== */
+
+body.menu-open {
+    overflow: hidden;
+    height: 100svh;
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
 }
