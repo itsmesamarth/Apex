@@ -1,6 +1,6 @@
 /* ========================================
    FONT SETUP
-   ======================================== */
+======================================== */
 
 @font-face {
     font-family: "Gajraj One";
@@ -30,7 +30,7 @@
 
 /* ========================================
    DESIGN TOKENS
-   ======================================== */
+======================================== */
 
 :root {
     --black: #080808;
@@ -38,7 +38,7 @@
 
     --page-padding: 1rem;
 
-    --name-size: clamp(5.5rem, 25vw, 14rem);
+    --name-size: clamp(5rem, 23vw, 8rem);
 
     --transition-fast: 300ms ease;
     --transition-slow: 900ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -47,7 +47,7 @@
 
 /* ========================================
    RESET
-   ======================================== */
+======================================== */
 
 * {
     box-sizing: border-box;
@@ -58,6 +58,7 @@
 html {
     background: var(--black);
     color: var(--white);
+    scroll-behavior: smooth;
 }
 
 body {
@@ -80,7 +81,7 @@ a {
 
 /* ========================================
    HERO
-   ======================================== */
+======================================== */
 
 .hero {
     position: relative;
@@ -94,81 +95,6 @@ a {
 }
 
 
-/* ========================================
-   MENU TRIGGER
-   ======================================== */
-
-.menu-trigger {
-    position: absolute;
-
-    top: var(--page-padding);
-    right: var(--page-padding);
-
-    z-index: 100;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-
-    width: 44px;
-    height: 44px;
-
-    padding: 0;
-
-    border: 0;
-    background: transparent;
-
-    cursor: pointer;
-}
-
-.menu-trigger span {
-    display: block;
-
-    width: 22px;
-    height: 1px;
-
-    margin-left: auto;
-
-    background: var(--white);
-
-    opacity: 0.8;
-
-    transition:
-        transform var(--transition-fast),
-        width var(--transition-fast),
-        opacity var(--transition-fast);
-}
-
-
-/* Menu hover */
-
-.menu-trigger:hover span:first-child {
-    width: 16px;
-}
-
-.menu-trigger:hover span:last-child {
-    width: 22px;
-}
-
-
-/* Menu open state */
-
-.menu-trigger.is-open span:first-child {
-    width: 22px;
-    transform: translateY(3px) rotate(45deg);
-}
-
-.menu-trigger.is-open span:last-child {
-    width: 22px;
-    transform: translateY(-3px) rotate(-45deg);
-}
-
-
-/* ========================================
-   HERO COMPOSITION
-   ======================================== */
-
 .hero-composition {
     position: relative;
 
@@ -180,8 +106,8 @@ a {
 
 
 /* ========================================
-   PHOTOGRAPH
-   ======================================== */
+   HERO IMAGE
+======================================== */
 
 .hero-image {
     position: absolute;
@@ -205,8 +131,6 @@ a {
     object-fit: cover;
     object-position: center center;
 
-    filter: none;
-
     transform: scale(1.08);
 
     transition: transform var(--transition-slow);
@@ -214,8 +138,8 @@ a {
 
 
 /* ========================================
-   MONUMENTAL NAME
-   ======================================== */
+   HERO NAME
+======================================== */
 
 .hero-name {
     position: absolute;
@@ -236,6 +160,7 @@ a {
     font-family: "Gajraj One", sans-serif;
     font-size: var(--name-size);
     font-weight: 400;
+
     line-height: 0.75;
 
     white-space: nowrap;
@@ -247,90 +172,158 @@ a {
 
 
 /* ========================================
-   NAVIGATION PANEL
-   ======================================== */
+   MENU TRIGGER
+======================================== */
 
-.site-menu {
+.menu-trigger {
     position: absolute;
 
-    top: calc(var(--page-padding) + 48px);
+    top: var(--page-padding);
     right: var(--page-padding);
 
-    z-index: 90;
+    z-index: 100;
 
-    width: min(300px, calc(100vw - 2rem));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-    padding: 2rem;
+    gap: 5px;
 
-    background: rgba(8, 8, 8, 0.45);
+    width: 44px;
+    height: 44px;
 
-    border: 1px solid rgba(242, 242, 240, 0.12);
+    padding: 0;
 
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    border: 0;
 
-    opacity: 0;
-    visibility: hidden;
+    background: transparent;
 
-    transform:
-        translateY(-12px)
-        scale(0.98);
+    cursor: pointer;
+}
 
-    transform-origin: top right;
+.menu-trigger span {
+    display: block;
+
+    width: 22px;
+    height: 1px;
+
+    margin-left: auto;
+
+    background: var(--white);
+
+    opacity: 0.8;
 
     transition:
-        opacity var(--transition-fast),
-        visibility var(--transition-fast),
-        transform var(--transition-fast);
+        transform var(--transition-fast),
+        width var(--transition-fast),
+        opacity var(--transition-fast);
+}
+
+.menu-trigger:hover span:first-child {
+    width: 16px;
+}
+
+.menu-trigger:hover span:last-child {
+    width: 22px;
 }
 
 
 /* ========================================
-   OPEN NAVIGATION
-   ======================================== */
+   MENU OPEN STATE
+======================================== */
+
+.menu-trigger.is-open span:first-child {
+    width: 22px;
+
+    transform:
+        translateY(3px)
+        rotate(45deg);
+}
+
+.menu-trigger.is-open span:last-child {
+    width: 22px;
+
+    transform:
+        translateY(-3px)
+        rotate(-45deg);
+}
+
+
+/* ========================================
+   NAVIGATION
+======================================== */
+
+.site-menu {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 90;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: 100svh;
+
+    padding:
+        5rem
+        var(--page-padding)
+        2rem;
+
+    background: rgba(8, 8, 8, 0.55);
+
+    border: 0;
+
+    -webkit-backdrop-filter: blur(22px);
+    backdrop-filter: blur(22px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-100%);
+
+    transition:
+        transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 300ms ease,
+        visibility 300ms ease;
+}
 
 .site-menu.is-open {
     opacity: 1;
     visibility: visible;
 
-    transform:
-        translateY(0)
-        scale(1);
+    transform: translateY(0);
 }
 
-
-/* ========================================
-   MENU INNER
-   ======================================== */
 
 .menu-inner {
     display: flex;
     flex-direction: column;
 
-    gap: 0.25rem;
+    width: 100%;
+
+    gap: 0.35rem;
 }
 
-
-/* ========================================
-   MENU LINKS
-   ======================================== */
 
 .menu-link {
     display: block;
 
-    padding: 0.65rem 0;
+    padding: 0.35rem 0;
 
     color: var(--white);
 
     font-family: "Rajdhani", sans-serif;
-    font-size: 2rem;
+    font-size: clamp(2.5rem, 11vw, 4rem);
     font-weight: 400;
+
     letter-spacing: 0.01em;
-    line-height: 1;
+    line-height: 0.95;
 
     text-decoration: none;
 
-    opacity: 0.78;
+    opacity: 0.8;
 
     transition:
         opacity var(--transition-fast),
@@ -339,133 +332,7 @@ a {
 
 .menu-link:hover {
     opacity: 1;
-
-    transform: translateX(6px);
 }
-
-
-/* ========================================
-   DESKTOP
-   ======================================== */
-
-@media (min-width: 768px) {
-
-    :root {
-        --page-padding: 1.5rem;
-        --name-size: clamp(9rem, 19vw, 20rem);
-    }
-
-    .hero-name {
-        top: 52%;
-        left: 50%;
-    }
-
-    .site-menu {
-        width: 320px;
-
-        padding: 2.25rem;
-    }
-}
-
-
-/* ========================================
-   LARGE DESKTOP
-   ======================================== */
-
-@media (min-width: 1200px) {
-
-    :root {
-        --page-padding: 2rem;
-        --name-size: clamp(12rem, 17vw, 22rem);
-    }
-
-    .site-menu {
-        width: 340px;
-    }
-}
-
-
-/* ========================================
-   MOBILE MENU
-   ======================================== */
-
-@media (max-width: 767px) {
-
-    .site-menu {
-        position: fixed;
-
-        inset: 0;
-
-        width: 100%;
-        height: 100svh;
-
-        padding:
-            6rem
-            var(--page-padding)
-            2rem;
-
-        display: flex;
-        align-items: center;
-
-        background: rgba(8, 8, 8, 0.45);
-
-        border: 0;
-
-        backdrop-filter: blur(22px);
-        -webkit-backdrop-filter: blur(22px);
-
-        opacity: 0;
-        visibility: hidden;
-
-        transform: translateY(-100%);
-
-        transition:
-            transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
-            opacity 300ms ease,
-            visibility 300ms ease;
-    }
-
-    .site-menu.is-open {
-        opacity: 1;
-        visibility: visible;
-
-        transform: translateY(0);
-    }
-
-
-    /* Mobile menu layout */
-
-    .menu-inner {
-        width: 100%;
-
-        gap: 0.5rem;
-    }
-
-
-    /* Same Rajdhani font as desktop */
-
-    .menu-link {
-        padding: 0.4rem 0;
-
-        font-family: "Rajdhani", sans-serif;
-        font-size: clamp(2.8rem, 12vw, 5rem);
-        font-weight: 400;
-        letter-spacing: 0.01em;
-        line-height: 0.95;
-
-        opacity: 0.8;
-    }
-
-    .menu-link:hover {
-        transform: none;
-    }
-}
-
-
-/* ========================================
-   MENU OPEN STATE
-   LOCK PAGE SCROLL
-   ======================================== */
 
 body.menu-open {
     overflow: hidden;
@@ -474,8 +341,1108 @@ body.menu-open {
 
 
 /* ========================================
+   NOTEBOOK INTRO
+======================================== */
+
+.notebook-intro {
+    position: relative;
+
+    min-height: 100svh;
+
+    padding:
+        1.5rem
+        var(--page-padding)
+        3rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background: var(--white);
+    color: var(--black);
+
+    border-top: 1px solid var(--black);
+}
+
+
+/* ========================================
+   NOTEBOOK META
+======================================== */
+
+.notebook-intro__meta {
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: 1.25rem;
+
+    border-bottom: 1px solid rgba(8, 8, 8, 0.25);
+
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.72rem;
+
+    letter-spacing: 0.08em;
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    opacity: 0.7;
+}
+
+
+/* ========================================
+   NOTEBOOK CONTENT
+======================================== */
+
+.notebook-intro__content {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 42rem;
+}
+
+
+/* ========================================
+   NOTEBOOK TITLE
+======================================== */
+
+.notebook-intro__title {
+    max-width: 11ch;
+
+    font-family: "Gajraj One", sans-serif;
+    font-size: clamp(3.1rem, 14vw, 6rem);
+    font-weight: 400;
+
+    line-height: 0.84;
+    letter-spacing: -0.025em;
+
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   NOTEBOOK DESCRIPTION
+======================================== */
+
+.notebook-intro__description {
+    max-width: 22rem;
+
+    margin-top: 2rem;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.25rem, 5vw, 1.7rem);
+
+    line-height: 1.05;
+
+    opacity: 0.75;
+}
+
+
+/* ========================================
+   ENTER LINK
+======================================== */
+
+.notebook-intro__enter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin-top: 3rem;
+    padding-bottom: 0.7rem;
+
+    border-bottom: 1px solid rgba(8, 8, 8, 0.35);
+
+    color: var(--black);
+
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.95rem;
+
+    letter-spacing: 0.05em;
+    line-height: 1;
+
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.notebook-intro__enter span:last-child {
+    font-size: 1.4rem;
+
+    transition: transform var(--transition-fast);
+}
+
+.notebook-intro__enter:hover span:last-child {
+    transform: translate(4px, 4px);
+}
+
+
+/* ========================================
+   INDEX
+======================================== */
+
+.notebook-index {
+    position: relative;
+
+    padding:
+        1.5rem
+        var(--page-padding)
+        5rem;
+
+    background: var(--black);
+    color: var(--white);
+
+    border-top: 1px solid var(--white);
+}
+
+
+/* ========================================
+   INDEX HEADER
+======================================== */
+
+.notebook-index__header {
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: 1.25rem;
+
+    border-bottom: 1px solid rgba(247, 247, 247, 0.3);
+
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.72rem;
+
+    letter-spacing: 0.08em;
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    opacity: 0.7;
+}
+
+
+/* ========================================
+   INDEX INTRO
+======================================== */
+
+.notebook-index__intro {
+    padding:
+        4rem
+        0
+        4.5rem;
+}
+
+
+.notebook-index__intro h2 {
+    max-width: 10ch;
+
+    font-family: "Gajraj One", sans-serif;
+    font-size: clamp(3.2rem, 13vw, 6rem);
+    font-weight: 400;
+
+    line-height: 0.84;
+    letter-spacing: -0.025em;
+
+    text-transform: uppercase;
+}
+
+
+.notebook-index__intro p {
+    max-width: 21rem;
+
+    margin-top: 2rem;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.25rem, 5vw, 1.7rem);
+
+    line-height: 1.05;
+
+    opacity: 0.75;
+}
+
+
+/* ========================================
+   INDEX ENTRIES
+======================================== */
+
+.notebook-index__entries {
+    border-top: 1px solid rgba(247, 247, 247, 0.5);
+}
+
+
+.index-entry {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 1.75rem 1fr;
+
+    gap: 0.9rem;
+
+    padding:
+        1.75rem
+        0;
+
+    border-bottom: 1px solid rgba(247, 247, 247, 0.3);
+
+    color: var(--white);
+
+    text-decoration: none;
+}
+
+
+.index-entry__number {
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.78rem;
+
+    letter-spacing: 0.05em;
+
+    opacity: 0.6;
+}
+
+
+.index-entry__main h3 {
+    max-width: 12ch;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 7.5vw, 3.5rem);
+    font-weight: 400;
+
+    line-height: 0.9;
+    letter-spacing: -0.025em;
+}
+
+
+.index-entry__main p {
+    max-width: 18rem;
+
+    margin-top: 0.85rem;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.05rem;
+
+    line-height: 1.05;
+
+    opacity: 0.7;
+}
+
+
+.index-entry__meta {
+    display: flex;
+    gap: 0.8rem;
+
+    margin-top: 1.5rem;
+
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.68rem;
+
+    letter-spacing: 0.08em;
+
+    opacity: 0.6;
+}
+
+
+.index-entry__arrow {
+    position: absolute;
+
+    top: 1.75rem;
+    right: 0;
+
+    font-family: "Rajdhani", sans-serif;
+    font-size: 1.25rem;
+
+    opacity: 0.7;
+
+    transition:
+        transform var(--transition-fast),
+        opacity var(--transition-fast);
+}
+
+
+.index-entry:hover .index-entry__arrow {
+    transform: translate(4px, -4px);
+
+    opacity: 1;
+}
+
+
+/* ========================================
+   THINGS I'VE KEPT
+======================================== */
+
+.things-kept {
+    position: relative;
+
+    padding:
+        1.5rem
+        var(--page-padding)
+        6rem;
+
+    background: var(--white);
+    color: var(--black);
+
+    border-top: 1px solid var(--black);
+}
+
+
+/* ========================================
+   ARCHIVE HEADER
+======================================== */
+
+.things-kept__header {
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: 1.25rem;
+
+    border-bottom: 1px solid rgba(8, 8, 8, 0.3);
+
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.72rem;
+
+    letter-spacing: 0.08em;
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    opacity: 0.7;
+}
+
+
+/* ========================================
+   ARCHIVE INTRO
+======================================== */
+
+.things-kept__intro {
+    padding:
+        4rem
+        0
+        4.5rem;
+}
+
+
+.things-kept__intro h2 {
+    max-width: 10ch;
+
+    font-family: "Gajraj One", sans-serif;
+    font-size: clamp(3.2rem, 13vw, 6rem);
+    font-weight: 400;
+
+    line-height: 0.82;
+    letter-spacing: -0.025em;
+
+    text-transform: uppercase;
+}
+
+
+.things-kept__intro p {
+    max-width: 20rem;
+
+    margin:
+        2rem
+        0
+        0
+        auto;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.25rem, 5vw, 1.7rem);
+
+    line-height: 1.05;
+
+    opacity: 0.75;
+}
+
+
+/* ========================================
+   ARCHIVE GRID
+======================================== */
+
+.things-kept__grid {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4rem;
+}
+
+
+.kept-item {
+    display: block;
+
+    color: var(--black);
+
+    text-decoration: none;
+}
+
+
+.kept-item__image {
+    width: 100%;
+
+    overflow: hidden;
+
+    background: #e8e8e8;
+}
+
+
+.kept-item__image img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    filter: grayscale(100%);
+
+    transition:
+        transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+
+.kept-item:hover img {
+    transform: scale(1.025);
+}
+
+
+.kept-item__meta {
+    display: flex;
+    justify-content: space-between;
+
+    padding-top: 0.7rem;
+
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.68rem;
+
+    letter-spacing: 0.07em;
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    opacity: 0.7;
+}
+
+
+/* ========================================
+   THE CABINET
+======================================== */
+
+.cabinet {
+    position: relative;
+
+    padding:
+        1.5rem
+        var(--page-padding)
+        6rem;
+
+    background: var(--black);
+    color: var(--white);
+
+    border-top: 1px solid var(--white);
+}
+
+
+/* ========================================
+   CABINET HEADER
+======================================== */
+
+.cabinet__header {
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: 1.25rem;
+
+    border-bottom: 1px solid rgba(247, 247, 247, 0.3);
+
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.72rem;
+
+    letter-spacing: 0.08em;
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    opacity: 0.7;
+}
+
+
+/* ========================================
+   CABINET INTRO
+======================================== */
+
+.cabinet__intro {
+    padding:
+        4rem
+        0
+        4.5rem;
+}
+
+
+.cabinet__intro h2 {
+    max-width: 9ch;
+
+    font-family: "Gajraj One", sans-serif;
+
+    /* Deliberately restrained on mobile */
+    font-size: clamp(2.8rem, 11vw, 5rem);
+
+    font-weight: 400;
+
+    line-height: 0.84;
+    letter-spacing: -0.025em;
+
+    text-transform: uppercase;
+}
+
+
+.cabinet__intro p {
+    max-width: 20rem;
+
+    margin-top: 2rem;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.25rem, 5vw, 1.7rem);
+
+    line-height: 1.05;
+
+    opacity: 0.75;
+}
+
+
+/* ========================================
+   CABINET DRAWERS
+======================================== */
+
+.cabinet__drawers {
+    border-top: 1px solid rgba(247, 247, 247, 0.5);
+}
+
+
+.cabinet-drawer {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 1.75rem 1fr;
+
+    gap: 0.9rem;
+
+    padding:
+        1.75rem
+        0;
+
+    border-bottom: 1px solid rgba(247, 247, 247, 0.3);
+
+    color: var(--white);
+
+    text-decoration: none;
+}
+
+
+.cabinet-drawer__number {
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.78rem;
+
+    letter-spacing: 0.05em;
+
+    opacity: 0.6;
+}
+
+
+.cabinet-drawer__content {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.cabinet-drawer__category {
+    margin-bottom: 0.65rem;
+
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.68rem;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    opacity: 0.6;
+}
+
+
+.cabinet-drawer h3 {
+    max-width: 12ch;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 7.5vw, 3.5rem);
+    font-weight: 400;
+
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+}
+
+
+.cabinet-drawer p {
+    max-width: 18rem;
+
+    margin-top: 0.85rem;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.05rem;
+
+    line-height: 1.05;
+
+    opacity: 0.7;
+}
+
+
+.cabinet-drawer__arrow {
+    position: absolute;
+
+    top: 1.75rem;
+    right: 0;
+
+    font-family: "Rajdhani", sans-serif;
+    font-size: 1.25rem;
+
+    opacity: 0.7;
+
+    transition:
+        transform var(--transition-fast),
+        opacity var(--transition-fast);
+}
+
+
+.cabinet-drawer:hover .cabinet-drawer__arrow {
+    transform: translate(4px, -4px);
+
+    opacity: 1;
+}
+
+
+/* ========================================
+   DESKTOP
+======================================== */
+
+@media (min-width: 768px) {
+
+    :root {
+        --page-padding: 1.5rem;
+        --name-size: clamp(8rem, 16vw, 16rem);
+    }
+
+
+    /* ----------------------------------------
+       HERO
+    ---------------------------------------- */
+
+    .hero-name {
+        top: 52%;
+    }
+
+
+    .site-menu {
+        inset: auto;
+
+        top: calc(var(--page-padding) + 48px);
+        right: var(--page-padding);
+
+        width: 300px;
+        height: auto;
+
+        padding: 2rem;
+
+        background: rgba(8, 8, 8, 0.45);
+
+        border: 1px solid rgba(242, 242, 240, 0.12);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transform:
+            translateY(-12px)
+            scale(0.98);
+    }
+
+
+    .site-menu.is-open {
+        opacity: 1;
+        visibility: visible;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+
+    .menu-inner {
+        gap: 0.2rem;
+    }
+
+
+    .menu-link {
+        padding: 0.5rem 0;
+
+        font-size: 1.8rem;
+    }
+
+
+    /* ----------------------------------------
+       NOTEBOOK INTRO
+    ---------------------------------------- */
+
+    .notebook-intro {
+        min-height: 100svh;
+
+        padding:
+            2rem
+            var(--page-padding)
+            3rem;
+    }
+
+
+    .notebook-intro__content {
+        margin-left: 8vw;
+
+        max-width: 58rem;
+    }
+
+
+    .notebook-intro__title {
+        max-width: 10ch;
+
+        font-size: clamp(5rem, 8vw, 8rem);
+    }
+
+
+    .notebook-intro__description {
+        margin:
+            2.5rem
+            0
+            0
+            22vw;
+    }
+
+
+    .notebook-intro__enter {
+        width: min(26rem, 35vw);
+
+        margin-left: auto;
+    }
+
+
+    /* ----------------------------------------
+       INDEX
+    ---------------------------------------- */
+
+    .notebook-index {
+        padding:
+            2rem
+            var(--page-padding)
+            8rem;
+    }
+
+
+    .notebook-index__intro {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        padding:
+            6rem
+            0
+            8rem;
+    }
+
+
+    .notebook-index__intro h2 {
+        font-size: clamp(5rem, 8vw, 8rem);
+    }
+
+
+    .notebook-index__intro p {
+        align-self: end;
+
+        max-width: 22rem;
+
+        margin:
+            0
+            0
+            0
+            8vw;
+    }
+
+
+    .index-entry {
+        grid-template-columns:
+            7vw
+            1fr
+            auto
+            2.5rem;
+
+        align-items: start;
+
+        gap: 1.5rem;
+
+        padding:
+            2.25rem
+            0;
+    }
+
+
+    .index-entry__main {
+        display: grid;
+
+        grid-template-columns:
+            minmax(16rem, 1fr)
+            minmax(12rem, 0.45fr);
+
+        gap: 4vw;
+    }
+
+
+    .index-entry__main h3 {
+        max-width: none;
+
+        font-size: clamp(2.5rem, 4vw, 4.5rem);
+    }
+
+
+    .index-entry__main p {
+        align-self: center;
+
+        margin: 0;
+    }
+
+
+    .index-entry__meta {
+        flex-direction: column;
+
+        margin: 0;
+
+        padding-top: 0.35rem;
+
+        text-align: right;
+    }
+
+
+    .index-entry__arrow {
+        position: static;
+
+        padding-top: 0.2rem;
+    }
+
+
+    /* ----------------------------------------
+       THINGS I'VE KEPT
+    ---------------------------------------- */
+
+    .things-kept {
+        padding:
+            2rem
+            var(--page-padding)
+            10rem;
+    }
+
+
+    .things-kept__intro {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        padding:
+            6rem
+            0
+            8rem;
+    }
+
+
+    .things-kept__intro h2 {
+        font-size: clamp(5rem, 8vw, 8rem);
+    }
+
+
+    .things-kept__intro p {
+        align-self: end;
+
+        max-width: 22rem;
+
+        margin:
+            0
+            0
+            0
+            7vw;
+    }
+
+
+    .things-kept__grid {
+        display: grid;
+
+        grid-template-columns: repeat(12, 1fr);
+
+        column-gap: 2rem;
+        row-gap: 10rem;
+
+        align-items: start;
+    }
+
+
+    .kept-item:nth-child(1) {
+        grid-column: 1 / span 5;
+    }
+
+
+    .kept-item:nth-child(2) {
+        grid-column: 9 / span 3;
+
+        margin-top: 5rem;
+    }
+
+
+    .kept-item:nth-child(3) {
+        grid-column: 3 / span 8;
+    }
+
+
+    .kept-item__image img {
+        width: 100%;
+        height: auto;
+
+        object-fit: contain;
+    }
+
+
+    /* ----------------------------------------
+       CABINET
+    ---------------------------------------- */
+
+    .cabinet {
+        padding:
+            2rem
+            var(--page-padding)
+            9rem;
+    }
+
+
+    .cabinet__intro {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        padding:
+            6rem
+            0
+            8rem;
+    }
+
+
+    .cabinet__intro h2 {
+        max-width: 8ch;
+
+        font-size: clamp(5rem, 8vw, 8rem);
+    }
+
+
+    .cabinet__intro p {
+        align-self: end;
+
+        max-width: 22rem;
+
+        margin:
+            0
+            0
+            0
+            8vw;
+    }
+
+
+    .cabinet-drawer {
+        grid-template-columns:
+            7vw
+            1fr
+            2.5rem;
+
+        gap: 1.5rem;
+
+        padding:
+            2.5rem
+            0;
+    }
+
+
+    .cabinet-drawer__content {
+        display: grid;
+
+        grid-template-columns:
+            minmax(12rem, 0.4fr)
+            1fr;
+
+        gap: 4vw;
+    }
+
+
+    .cabinet-drawer__category {
+        margin: 0;
+
+        padding-top: 0.35rem;
+    }
+
+
+    .cabinet-drawer h3 {
+        max-width: none;
+
+        font-size: clamp(2.8rem, 4vw, 4.5rem);
+    }
+
+
+    .cabinet-drawer p {
+        align-self: center;
+
+        margin: 0;
+
+        max-width: 20rem;
+    }
+
+
+    .cabinet-drawer__arrow {
+        position: static;
+
+        padding-top: 0.25rem;
+    }
+}
+
+
+/* ========================================
+   LARGE DESKTOP
+======================================== */
+
+@media (min-width: 1200px) {
+
+    :root {
+        --page-padding: 2rem;
+        --name-size: clamp(10rem, 14vw, 18rem);
+    }
+
+
+    .notebook-intro__content {
+        margin-left: 10vw;
+    }
+
+
+    .notebook-index__intro,
+    .things-kept__intro,
+    .cabinet__intro {
+        padding-top: 7rem;
+        padding-bottom: 9rem;
+    }
+
+
+    .things-kept__grid {
+        column-gap: 2.5rem;
+        row-gap: 12rem;
+    }
+
+
+    .cabinet-drawer__content {
+        gap: 5vw;
+    }
+}
+
+
+/* ========================================
    REDUCED MOTION
-   ======================================== */
+======================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
